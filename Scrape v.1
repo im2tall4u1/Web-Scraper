@@ -1,0 +1,13 @@
+import bs4
+import urllib3
+import requests
+
+http = urllib3.PoolManager()
+r = requests.get('https://www.nytimes.com/2019/01/24/world/americas/venezuela-protests-maduro-guaido.html?action=click&module=Top%20Stories&pgtype=Homepage')
+print(r.text[0:1000])
+
+from bs4 import BeautifulSoup
+soup = BeautifulSoup(r.text, 'html.parser')
+
+results = soup.find_all('span', attrs={'class':'short-desc'})
+print(len(results))

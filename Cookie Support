@@ -1,0 +1,14 @@
+http_pool = urllib3.connection_from_url('https://www.bloomberg.com/quote/SPX:IND')
+myheaders = {'Cookie': 'some cookie data'}
+r = http_pool.get_url('https://www.bloomberg.com/quote/SPX:IND', myheaders=myheaders)
+url = 'https://www.bloomberg.com/quote/SPX:IND'
+
+def getHtml(url):
+    http = urllib3.PoolManager()
+    r = http.request('GET', url, headers={'User-agent':'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.16 Safari/537.36','Cookie':'cookie_name=cookie_value'})
+    return r.data #HTML
+    
+    #using requests library
+import requests
+r1 = requests.get(url, cookies={'somename':'somevalue'})
+print(r1.content)
